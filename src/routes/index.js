@@ -59,6 +59,9 @@ export const router = new VueRouter({
             name: 'NotFound',
             path: '/404',
             component: NotFound,
+            meta: {
+                title: 'Страница не найдена'
+            }
         },
     ],
 })
