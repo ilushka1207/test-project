@@ -1,28 +1,25 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>{{ getMetaTitle }}</v-app-bar>
+
+    <v-main>
+      <router-view />
+    </v-main>
+
+    <v-footer>&copy; Васильев Илья, ilushka911@inbox.ru, +7 985 958 88 00. Тестовое задание на должность frontend-разработчика</v-footer>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import "./main.css";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "App",
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  computed: {
+    getMetaTitle() {
+      return this.$route.meta.title || "Страница без названия";
+    }
+  }
+};
+</script>
