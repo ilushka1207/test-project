@@ -74,8 +74,8 @@
         <template v-slot:item.price="{ item: {price} }">{{ prepareNumber(price) }}</template>
         <template v-slot:item.price="{ item: {quantity} }">{{ prepareNumber(quantity) }}</template>
         <template v-slot:item.controls="{ item }">
-          <v-icon small class="mr-2" @click="onEditItem($event, item)">mdi-pencil</v-icon>
-          <v-icon small @click="onDeleteItem($event, item)">mdi-delete</v-icon>
+          <v-icon small class="mr-2" @click.stop="onEditItem(item)">mdi-pencil</v-icon>
+          <v-icon small @click.stop="onDeleteItem(item)">mdi-delete</v-icon>
         </template>
       </v-data-table>
     </v-card>
@@ -128,15 +128,13 @@ export default {
   },
 
   methods: {
-    onEditItem(e, item) {
-      e.stopPropagation();
+    onEditItem(item) {
       this.editedIndex = this.products.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.isEditModalOpen = true;
     },
 
-    onDeleteItem(e, product) {
-      e.stopPropagation();
+    onDeleteItem(product) {
       confirm("Вы уверены, что хотите удалить товар?") &&
         this.$emit("on-delete-product", { product });
     },
